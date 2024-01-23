@@ -2,6 +2,7 @@ from win32api import GetSystemMetrics
 from util import *
 from CalculationsUntil import *
 
+
 def program():
     screen_width = GetSystemMetrics(0) * 0.25
     screen_height = GetSystemMetrics(1) * 0.75
@@ -39,3 +40,6 @@ def program():
 
 if __name__ == '__main__':
     program()
+
+
+# find workspace and check atn2??

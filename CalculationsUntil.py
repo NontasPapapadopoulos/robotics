@@ -49,3 +49,39 @@ def calculateX1andY1(x2, y2, L1, L2, LR):
         y1 = coordinates[3]
 
     return x1, y1
+
+
+def finalArm(x2, y2, L1, L2, LR):
+    xa1 = float(0)
+    ya1 = float(0)
+    xa2 = float(0)
+    ya2 = float(0)
+
+    xa1, ya1, xa2, ya2 = armCalculations(x2, y2, L1, L2)
+
+    f11 = math.atan2(xa1, ya1)
+
+    xtn = (x2 - xa1) * math.cos(-f11) - (y2 - ya1) * math.sin(-f11)
+    ytn = (x2 - xa1) * math.sin(-f11) + (y2 - ya1) * math.cos(-f11)
+
+    f22 = math.atan2(xtn, ytn)
+
+    x1 = float(0)
+    y1 = float(0)
+
+    if LR == 0:  # left direction
+        if f22 <= math.pi:
+            x1 = xa1
+            y1 = ya1
+        else:
+            x1 = xa2
+            y1 = ya2
+    else:
+        if f22 > math.pi:
+            x1 = xa1
+            y1 = ya1
+        else:
+            x1 = xa2
+            y2 = ya2
+
+    return x1, y1
