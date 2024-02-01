@@ -4,9 +4,6 @@ import math
 def armCalculations(x2, y2, L1, L2):
     epsilon = 0.0001
 
-    xa1 = float(0)
-    ya1 = float(0)
-    xa2 = float(0)
     ya2 = float(0)
 
     C = (y2 ** 2 + x2 ** 2 + L1 ** 2 - L2 ** 2) / 2
@@ -51,6 +48,22 @@ def calculateX1andY1(x2, y2, L1, L2, LR):
     return x1, y1
 
 
+def isWorkSpaceValid(x, y, L1, L2, IfOutPrintMessage=True):
+    # check if a point is inside or outside of workspace
+    R = L1 + L2
+    r = abs(L1 - L2)
+
+    isP1insideOfTheOuterCircle = x ** 2 + y ** 2 < R ** 2
+    isP1OutOfTheInnerCircle = x ** 2 + y ** 2 > R ** 2
+
+    #  (x ** 2 + y ** 2) < (L1 + L2) ** 2 and (x ** 2 + y ** 2) > (L1 - L2) ** 2
+    if isP1OutOfTheInnerCircle and isP1insideOfTheOuterCircle:
+        return True
+    else:
+        if IfOutPrintMessage: print('Coordinates ', x, y, ' are outside of workspace!')
+        return False
+
+
 def finalArm(x2, y2, L1, L2, LR):
     xa1 = float(0)
     ya1 = float(0)
@@ -84,4 +97,18 @@ def finalArm(x2, y2, L1, L2, LR):
             x1 = xa2
             y2 = ya2
 
-    return x1, y1
+    return xa1, ya1, xa2, ya2
+
+
+def armMovementIsValid(L1, L2, x2, y2, xt, yt):
+    a = (y2 - yt) / (x2 - xt)
+    b = y2 ** 2 - a * x2 ** 2
+    D = 4 * a ** 2 * b ** 2 * (a ** 2 + 1) * (b ** 2 - (L1 - L2) ** 2)
+    return D < 0 or D == 0
+
+
+
+
+
+
+

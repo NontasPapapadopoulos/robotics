@@ -28,12 +28,12 @@ def DrawLine(x1, y1, x2, y2, window, width, color):
 
 
 def DrawCircle(x1, y1, radius, window, width, color, fillcolor=''):
-    aCircle = Circle(Point(x1, y1), radius)
-    aCircle.setWidth(width)
-    aCircle.setOutline(color)
+    circle = Circle(Point(x1, y1), radius)
+    circle.setWidth(width)
+    circle.setOutline(color)
     if fillcolor != '':
-        aCircle.setFill(fillcolor)
-    aCircle.draw(window)
+        circle.setFill(fillcolor)
+    circle.draw(window)
 
 
 def DesignAxes(window, screen_width, screen_height, color):
@@ -68,3 +68,7 @@ def selectArmDirection():
 
         if LR == 0 or LR == 1 == True:
             break
+
+
+def showErrorMessage(message):
+    messagebox.showerror("Error", message)
