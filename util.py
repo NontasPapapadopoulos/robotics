@@ -86,7 +86,7 @@ def draw_inner_and_outer_circles(L1, L2, win):
     draw_circle(0, 0, abs(L1 - L2), win, 3, "red")
 
 
-def draw_the_arm(x1, y1, x2, y2, win):
+def draw_the_arms(x1, y1, x2, y2, win):
     draw_line(0, 0, x1, y1, win, 3, "black")
     draw_line(x1, y1, x2, y2, win, 3, "black")
 
@@ -94,7 +94,10 @@ def draw_the_arm(x1, y1, x2, y2, win):
 def draw_linear_movement_line(x2, y2, xt, yt, win):
     draw_line(x2, y2, xt, yt, win, 3, "blue")
 
-
+def show_error_dialog(message):
+    root = tk.Tk()
+    root.withdraw()
+    messagebox.showinfo("Ενημέρωση", message)
 
 
 def display_arm_movement_animation(L1, L2, direction, screen_height, screen_width, win, x1, x2, xt, y1, y2, yt):
