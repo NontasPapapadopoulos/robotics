@@ -31,7 +31,7 @@ def program():
             xt = input_value_from_pop_up_window("Δώσε τη θέση Χ που θέλεις να πάει το ρομπότ: ")
             yt = input_value_from_pop_up_window("Δώσε τη θέση Υ που θέλεις να πάει το ρομπότ: ")
 
-            if is_workspace_is_valid(x2, y2, L1, L1) and arm_movement_is_valid(L1, L2, x2, y2, xt, yt):
+            if is_workspace_is_valid(x2, y2, L1, L1) and arm_movement_is_valid(L1, L2, x2, y2, xt, yt, direction, points):
                 display_arm_movement_animation(L1, L2, direction, screen_height, screen_width, win, x1, x2, xt, y1, y2, yt)
                 break
             else:

@@ -60,15 +60,26 @@ def is_workspace_is_valid(x, y, L1, L2):
     return False
 
 
-def arm_movement_is_valid(L1, L2, x2, y2, xt, yt):
+def arm_movement_is_valid(L1, L2, x2, y2, xt, yt, direction, points):
     a = (y2 - yt) / (x2 - xt)
     b = y2 ** 2 - a * x2 ** 2
     D = 4 * a ** 2 * b ** 2 * -4 * (a ** 2 + 1) * (b ** 2 - (L1 - L2) ** 2)
-    return D < 0 or D == 0
+
+    delta_is_valid = D < 0 or D == 0
+
+    return delta_is_valid and arm_movement_does_not_cross_the_inner_circle(x2, y2, L1, L2, direction, xt, yt, points)
 
 
+def arm_movement_does_not_cross_the_inner_circle(x2, y2, L1, L2, direction, xt, yt, points):
+    try:
+        for i in range(0, points + 1):
+            xp = float((xt - x2) * i / points + x2)
+            yp = float((yt - y2) * i / points + y2)
 
+            x,y = calculate_x1_and_y1(xp, yp, L1, L2, direction)
+            print(x,y)
 
-
-
-
+        return True
+    except Exception as e:
+        print(e)
+        return False

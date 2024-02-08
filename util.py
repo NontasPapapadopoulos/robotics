@@ -1,4 +1,3 @@
-import tkinter as tk
 from tkinter import simpledialog
 from tkinter import messagebox
 from graphics import *
@@ -6,6 +5,12 @@ from graphics import *
 from CalculationsUntil import calculate_x1_and_y1
 
 background_color = "white"
+
+# Animation
+animation_duration = 5
+rate = 10
+points = int(animation_duration * rate)
+delay = 1 / rate
 
 
 def create_window(screen_width, screen_height):
@@ -60,8 +65,8 @@ def input_value_from_pop_up_window(message):
 def selectArmDirection():
     while True:
         try:
-            result = messagebox.askquestion("Arm direction", "Do you want right direction? ", )
-            if result:
+            movement = messagebox.askquestion("Arm direction", "Do you want right direction? ", )
+            if movement:
                 LR = 0
             else:
                 LR = 1
@@ -94,6 +99,7 @@ def draw_the_arms(x1, y1, x2, y2, win):
 def draw_linear_movement_line(x2, y2, xt, yt, win):
     draw_line(x2, y2, xt, yt, win, 3, "blue")
 
+
 def show_error_dialog(message):
     root = tk.Tk()
     root.withdraw()
@@ -104,11 +110,7 @@ def display_arm_movement_animation(L1, L2, direction, screen_height, screen_widt
     draw_linear_movement_line(x2, y2, xt, yt, win)
     draw_circle(0, 0, abs(L1 + L2), win, 2, "blue", "yellow")
     design_axes(win, screen_width, screen_height, "green")
-    # Animation
-    animation_duration = 5
-    rate = 10
-    points = int(animation_duration * rate)
-    delay = 1 / rate
+
     for i in range(0, points + 1):
         xp = float((xt - x2) * i / points + x2)
         yp = float((yt - y2) * i / points + y2)
